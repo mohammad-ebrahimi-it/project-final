@@ -170,7 +170,6 @@
                             url: `/final/public/panel/api_delete/${$(this).parent().parent().attr("data-id")}`,
                             method: "delete",
                             success: function (response_id) {
-                                console.log(response_id);
                                 $(`tr[data-id=${response_id}]`).remove();
                             }
                         });
