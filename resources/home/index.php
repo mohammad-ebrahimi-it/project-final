@@ -26,9 +26,9 @@
     <ul>
         <li><a href="#">صفحه اصلی</a></li>
         <hr>
-        <li><a href="#"> ساعات کاری </a></li>
+        <li><a href="#time-work"> ساعات کاری </a></li>
         <hr>
-        <li><a href="#"> تماس با ما </a></li>
+        <li><a href="#contact"> تماس با ما </a></li>
             <hr>
             <li><a href="../login/index">ورود</a> <a href="../register/index">ثبت نام</a></li>
     </ul>
@@ -168,7 +168,7 @@
         </p>
     </div>
     <div class="question_answer">
-        <p> ساعات کاری باشگاه در روز های عادی از 9 صبح تا 9 شب میباشد و در روز های تعطیل باشگاه باز نیست  </p>
+        <p id="time-work"> ساعات کاری باشگاه در روز های عادی از 9 صبح تا 9 شب میباشد و در روز های تعطیل باشگاه باز نیست  </p>
     </div>
 </div>
 
@@ -209,7 +209,7 @@
 <br>
 <!--Contact-->
 <div class="question-title">
-    <p>راه های ارتباطی </p>
+    <p id="contact">راه های ارتباطی </p>
     <p> ارتباط با ما ازطریق ایمیل ، تلگرام و ....</p>
 </div>
 <div class="line"></div>
@@ -235,7 +235,7 @@
 
 <!--Footer-->
 <div class="footer">
-    <p> Design by : arshia rezaee - mr ebrahimi </p>
+    <p> </p>
     <p> website name : rooz sport </p>
 </div>
 

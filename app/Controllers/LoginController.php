@@ -11,6 +11,7 @@ class LoginController extends BaseController
     {
         $this->view("login/login.php", []);
 
+
     }
 
     public function login()
@@ -29,11 +30,11 @@ class LoginController extends BaseController
         foreach ($get as $item) {
             if (!empty($email) && !empty($password)) {
 
-                $_SESSION["emailUser"] = $userName;
                 if ($password === $item['password'] && $email === $item['email']) {
 
+                    $_SESSION["emailUser"] = $userName;
                     $_SESSION["useID"] = $item['id'];
-                    $_SESSION["emailUser1"] = $userName;
+//                    $_SESSION["emailUser1"] = $userName;
 
                     $this->redirect('../panel/index');
 
@@ -52,9 +53,12 @@ class LoginController extends BaseController
                 $_SESSION['isEmpty'] = "username and password is empty";
 
             }
+
         }
 
     }
+
+
 
 
 }

@@ -42,21 +42,21 @@
 
                                             <span style="color:red">
                                                 <?php
-
-                                                if (isset($_SESSION['error'])){
-                                                    echo $_SESSION['error'];
-                                                    session_unset();
-                                                    session_destroy();
-
-                                                }
-                                                if (isset($_SESSION['isEmpty'])) {
-                                                    echo $_SESSION['isEmpty'];
-
-                                                        session_unset();
-                                                        session_destroy();
-
-                                                }
-
+//                                                if (isset($_SESSION['error'])) {
+//                                                    echo $_SESSION['error'];
+//                                                    session_destroy();
+//                                                    session_unset();
+//                                                }
+//                                                if (isset($_SESSION['isEmpty'])) {
+//                                                    echo $_SESSION['isEmpty'];
+//                                                     session_destroy();
+//                                                     session_unset();
+//                                                }
+//                                                else{
+//                                                    session_unset();
+//                                                    session_destroy();
+//
+//                                                }
 
                                                 ?>
                                              </span>

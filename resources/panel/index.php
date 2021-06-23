@@ -29,14 +29,14 @@
             <?php
 
 
-            if (isset($_SESSION['emailUser1'])) {
+            if (isset($_SESSION['emailUser'])) {
                 echo $_SESSION['emailUser'];
             } else {
                 session_unset();
                 session_destroy();
                 $this->redirect('../login/index');
             }
-            //            $date = ['get' => $_SESSION['emailUser1']];
+
             ?>
 
         </p>
@@ -77,55 +77,64 @@
 <!--buy-->
 <div class="container">
 
-<div class="buy_title">
-    <p> خرید های اخیر</p>
-</div>
-<hr>
+    <div class="buy_title">
+        <p> خرید های اخیر</p>
+    </div>
+    <hr>
 
 
     <form action="delete_items" method="post">
 
-    <table class="table table-striped " style="text-align: left">
-        <thead dir="rtl">
-        <tr>
-            <th>انتخاب دست جمعی</th>
-            <th>نام مربی</th>
-            <th>شاگرد</th>
-            <th>وضعیت</th>
-            <th>حذف</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $data[] =[];
-        $resultsPlan = $data['get_plan'];
-        $resultsUser = $data['get_user'];
-        $resultsTrainer = $data['get_trainer'];
+        <table class="table table-striped " style="text-align: left">
+            <thead dir="rtl">
+            <tr>
+                <th>انتخاب دست جمعی</th>
+                <th>نام مربی</th>
+                <th>شاگرد</th>
+                <th>وضعیت</th>
+                <th>حذف</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $data[] = [];
+            $resultsPlan = $data['get_plan'];
+            $resultsUser = $data['get_user'];
+            $resultsTrainer = $data['get_trainer'];
 
-        foreach ($resultsPlan as $result){
-            foreach ($resultsUser as $item)
-                foreach ($resultsTrainer as $value)
+            foreach ($resultsPlan
 
-        if ($result['user_id'] === $_SESSION['useID'] ){
-            if ( $result['trainer_id'] == $value['id']){
-                if ($item['id'] === $result['user_id']) {
-                    $id = 0;
-        ?>
-        <div id="<?=$result['id']?>">
-        <tr data-id="<?= $result['id']?>">
-            <td><input type="checkbox" class="buy_title" value="<?=$result['id']?>" name="delete[]" id=""></td>
-            <td><?=$value['first_name'] ." ". $value['last_name'];?></td>
-            <td><?=$item['first_name'] ." ". $item['last_name']?></td>
-            <td><?= $result['posting']?></td>
-            <td><a class="delete" href="#">حذف</a></td>
-        </tr>
-            <?php }}}}?>
+            as $result){
+            foreach ($resultsUser
+
+            as $item)
+            foreach ($resultsTrainer
+
+            as $value)
+
+            if ($result['user_id'] === $_SESSION['useID']){
+            if ($result['trainer_id'] == $value['id']){
+            if ($item['id'] === $result['user_id']) {
+
+            ?>
+            <div id="<?= $result['id'] ?>">
+                <tr data-id="<?= $result['id'] ?>">
+                    <td><input type="checkbox" class="buy_title" value="<?= $result['id'] ?>" name="delete[]" id="">
+                    </td>
+                    <td><?= $value['first_name'] . " " . $value['last_name']; ?></td>
+                    <td><?= $item['first_name'] . " " . $item['last_name'] ?></td>
+                    <td><?= $result['posting'] ?></td>
+                    <td><a class="delete" href="#">حذف</a></td>
+                </tr>
+                <?php }
+                }
+                }
+                } ?>
             </div>
-        </tbody>
+            </tbody>
 
 
-
-    </table>
+        </table>
         <input type="submit" style="left: 25px" class="btn btn-danger " value="حذف دست جمعی">
         <div class="btn  btn-info">
             <a href="../order/index" style="color: white"> انتخاب دبیر و شروع تمرین</a>
@@ -135,25 +144,46 @@
     <script>
         <?php
         if (isset($_SESSION['check_select'])){?>
-        swal("خطا !", "<?= $_SESSION['check_select']; unset($_SESSION['check_select']);} ?>", "warning");
-
-
+        swal("<?= $_SESSION['check_select']; unset($_SESSION['check_select']);} ?>", {
+            icon: "warning",
+            buttons: "تایید"
+        });
     </script>
 </div>
 <script>
-
-
     $(function () {
+
+
         $("a.delete").on("click", function (e) {
             e.preventDefault();
-            $.ajax({
-                url: `/final/public/panel/api_delete/${$(this).parent().parent().attr("data-id")}`,
-                method: "delete",
-                success: function (response_id) {
-                    $(`tr[data-id=${response_id}]`).remove();
+            swal({
+                title: "اخطار !",
+                text: "آیا مطمعن هستید که می خواهید حذف کنید؟",
+                icon: "warning",
+                buttons: ["لغو", "بله"],
+                dangerMode: true,
 
-                }
             })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: `/final/public/panel/api_delete/${$(this).parent().parent().attr("data-id")}`,
+                            method: "delete",
+                            success: function (response_id) {
+                                console.log(response_id);
+                                $(`tr[data-id=${response_id}]`).remove();
+                            }
+                        });
+                        swal("موفق! فایل مورد نظر با موفقیت حذف شد !", {
+                            icon: "success",
+                            buttons: "تایید"
+                        });
+
+                    } else {
+
+                    }
+                });
+
         })
     })
 </script>

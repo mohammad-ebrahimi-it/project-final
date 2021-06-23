@@ -13,16 +13,15 @@ class OrderController extends BaseController
         $this->view("order/index.php", ['get' => $get]);
     }
 
-    public function set_trainer() {
+    public function set_trainer()
+    {
 
         $trainerId = Request::getParam('id');
         $userEmail = Request::getParam('user_id');
         $values = [$userEmail, $trainerId];
-        $fields = ["user_id","trainer_id"];
-        DB::table("plan")->add($fields,$values);
+        $fields = ["user_id", "trainer_id"];
+        DB::table("plan")->add($fields, $values);
         $this->redirect('../panel/index');
-
-
     }
 
 }

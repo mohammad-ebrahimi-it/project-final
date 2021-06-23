@@ -5,7 +5,6 @@ use App\Http\BaseController;
 use App\Http\Request;
 use App\Models\DB;
 
-
 class PanelController extends BaseController
 {
 
@@ -28,26 +27,26 @@ class PanelController extends BaseController
     public function delete_items()
     {
         $value = Request::getParam('delete');
-        if(!empty($value)){
+        if (!empty($value)) {
 
             $field = ['id'];
             DB::table('plan')->delete('id', $value);
             $this->redirect('index');
-        }else{
+        } else {
             $_SESSION["check_select"] = "لطفا یک مورد انتخاب کنید !";
             $this->redirect('index');
 
         }
-
-
     }
 
     public function api_delete($id)
     {
-        $get = DB::table('plan')
-            ->delete('id', [$id]);
+        if (isset($_SESSION["emailUser"])) {
+            $get = DB::table('plan')
+                ->delete('id', [$id]);
             echo $id;
-
+        }
     }
+
 
 }

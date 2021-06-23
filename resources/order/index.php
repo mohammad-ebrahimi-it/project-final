@@ -47,7 +47,7 @@
             <?php
             session_start();
 
-            if (isset($_SESSION['emailUser1'])) {
+            if (isset($_SESSION['emailUser'])) {
                 echo $_SESSION['emailUser'];
             } else {
                 session_unset();

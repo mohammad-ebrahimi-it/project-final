@@ -57,8 +57,7 @@ class DB
     {
         $values = implode("','", $values);
         self::$query = "delete from " . self::$table . " where {$field} IN ('{$values}')";
-        print_r(self::$query);
-//
+
         self::$query = mysqli_query(self::$handler, self::$query);
         return true;
     }

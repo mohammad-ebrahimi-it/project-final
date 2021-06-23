@@ -1,4 +1,5 @@
 <?php
+session_start();
 use App\Http\Request;
 use App\Http\BaseController;
 use App\Models\DB;
@@ -28,9 +29,13 @@ class RegisterController extends BaseController
                 DB::table('users')->add($fields, $values);
                 $this->redirect('../login/index');
             }
+            else{
+                $this->index();
+            }
 
         }else {
-            $this->redirect('../register/index');
+            $_SESSION["isEmpty"] = "the all fields are empty";
+            $this->redirect('index');
         }
 
 

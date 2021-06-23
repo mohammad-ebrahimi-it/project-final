@@ -1,6 +1,6 @@
 <?php
 $content = "";
-$content .=  '
+$content .= '
 <!DOCTYPE html>
 <html>
 
@@ -38,8 +38,10 @@ $content .=  '
                                 </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Register Account</button>
                                 <hr><a class="btn btn-primary btn-block text-white btn-google btn-user" role="button"><i class="fab fa-google"></i>&nbsp; Register with Google</a><a class="btn btn-primary btn-block text-white btn-facebook btn-user" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
                                 <hr>
-                            </form>
-                        </div>
+
+        </form>
+
+</div>
                     </div>
                 </div>
             </div>
@@ -51,8 +53,19 @@ $content .=  '
     <script src="../../public/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="../../public/js/theme.js"></script>
+        <script src="../../public/js/sweetalert.min.js"></script>
+
 </body>
 
 </html>
 ';
 echo $content;
+?>
+<script>
+    <?php
+    if (isset($_SESSION['isEmpty'])){?>
+    swal("<?= $_SESSION['isEmpty']; unset($_SESSION['isEmpty']);} ?>", {
+        icon: "warning",
+        buttons: "ok"
+    });
+</script>
